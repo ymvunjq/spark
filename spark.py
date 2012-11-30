@@ -47,12 +47,17 @@ spriteh = list(u"▏" \
                u"█")
 
 
-def scaled(numbers,scale):
-    """ Return scaled numbers : lowest number will be 0, highest number will be scale """
+def scaled(numbers,scale,start_zero=False):
+    """ Return scaled numbers : lowest number will be 0, highest number will be scale
+        if start_zero is set to true, then lowest value will be 0 (except is lowest number
+        is lower than 0) """
     if len(numbers) == 0:
         return []
 
-    min_value = min(numbers)
+    if start_zero:
+        min_value = min(0,min(numbers))
+    else:
+        min_value = min(numbers)
     max_value = max(numbers)
     value_scale = max_value - min_value
 
@@ -61,10 +66,10 @@ def scaled(numbers,scale):
 
     return map(lambda x: int(((x-min_value)*(float(scale)-1.0))/value_scale),numbers)
 
-def spark_values(numbers,ln,char=1):
+def spark_values(numbers,ln,char=1,start_zero=False):
     """ Return matrix of scaled values """
     out = []
-    sc = scaled(numbers,ln*char)
+    sc = scaled(numbers,ln*char,start_zero)
     for i in xrange(char):
         l = []
         for n in sc:
@@ -77,14 +82,14 @@ def spark_values(numbers,ln,char=1):
         out.append(l)
     return out
 
-def spark(numbers,horizontal=True,char=1):
+def spark(numbers,horizontal=True,char=1,start_zero=False):
     """ Return array of sprites to display """
     numbers = map(float,numbers)
     if horizontal:
-        sp = spark_values(numbers,len(spriteh),char)
+        sp = spark_values(numbers,len(spriteh),char,start_zero)
         return ["".join([spriteh[x] if not x is None else "" for x in l]) for l in zip(*sp)]
     else:
-        sp = spark_values(numbers,len(spritev),char)
+        sp = spark_values(numbers,len(spritev),char,zero)
         return list(reversed(["".join([spritev[x] if not x is None else " " for x in l]) for l in sp]))
 
 
@@ -100,6 +105,7 @@ if __name__ == "__main__":
     parser.add_argument("--regex","-r",metavar="REGEXP",default=None)
     parser.add_argument("--no-title",action="store_true",help="Do not display title in horizontal display")
     parser.add_argument("--no-value",action="store_true",help="Do not display value in horizontal display")
+    parser.add_argument("-z","--zero",action="store_true",help="Start at 0 instead of lowest numbers value")
     args = parser.parse_args()
 
     numbers = []
@@ -132,7 +138,7 @@ if __name__ == "__main__":
         smax = len(max(title,key=len))
 
     s = u''
-    sp = spark(numbers,args.horizontal,args.size)
+    sp = spark(numbers,args.horizontal,args.size,args.zero)
     for i in xrange(len(sp)):
         if args.horizontal and not title is None and not args.no_title:
             s = s + title[i].rjust(smax," ") + " "
