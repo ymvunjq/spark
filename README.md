@@ -39,15 +39,15 @@ Number of characters used to display data can be choosen with `-s` option.
 Or in vertical
 
     $ spark.py -s 10 1 3 7 10 2 0
-       █  
-       █  
-       █  
-      ██  
-      ██  
-      ██  
-      ██  
-     ███  
-     ████ 
+       █
+       █
+       █
+      ██
+      ██
+      ██
+      ██
+     ███
+     ████
     █████_
 
 
@@ -69,8 +69,12 @@ The same output can be generated with a python regular expression
     file_25k ████▉ 25600
      file_4k ▋ 4096
     file_50k ██████████ 51200
-    
+
 ## Bad Display
 
 Depending on the font you are using, graph can be perfect or ugly... On github Readme vertical graph are ugly. My .Xdefault contains `URxvt*font: xft:DejaVu Sans Mono:style=regular:pixelsize=11` and graph are nice.
 You can change `spritev` and `spriteh` variables in code to adapt sprites to your font configuration.
+
+## Cool usage
+
+Check https://github.com/ymvunjq/spark/wiki/Fun-usage
