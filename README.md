@@ -74,3 +74,7 @@ The same output can be generated with a python regular expression
 
 Depending on the font you are using, graph can be perfect or ugly... On github Readme vertical graph are ugly. My .Xdefault contains `URxvt*font: xft:DejaVu Sans Mono:style=regular:pixelsize=11` and graph are nice.
 You can change `spritev` and `spriteh` variables in code to adapt sprites to your font configuration.
+
+## Cool usage
+
+Check https://github.com/ymvunjq/spark/wiki/Fun-usage
