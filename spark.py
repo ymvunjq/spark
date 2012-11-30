@@ -121,7 +121,11 @@ if __name__ == "__main__":
             if len(v) > 0 and ":" in v[0]:
                 title = []
                 for e in v:
-                    name,value = e.split(":")
+                    try:
+                        name,value = e.split(":")
+                    except ValueError:
+                        print "Bad input value"
+                        sys.exit(1)
                     numbers.append(value)
                     title.append(name)
             else:
