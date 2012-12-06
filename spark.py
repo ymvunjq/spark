@@ -127,7 +127,7 @@ if __name__ == "__main__":
                         print "Bad input value"
                         sys.exit(0)
                     numbers.append(value)
-                    title.append(name)
+                    title.append(unicode(name.decode("utf-8")))
             else:
                 numbers = v
         else:
