@@ -89,7 +89,7 @@ def spark(numbers,horizontal=True,char=1,start_zero=False):
         sp = spark_values(numbers,len(spriteh),char,start_zero)
         return ["".join([spriteh[x] if not x is None else "" for x in l]) for l in zip(*sp)]
     else:
-        sp = spark_values(numbers,len(spritev),char,zero)
+        sp = spark_values(numbers,len(spritev),char,start_zero)
         return list(reversed(["".join([spritev[x] if not x is None else " " for x in l]) for l in sp]))
 
 
